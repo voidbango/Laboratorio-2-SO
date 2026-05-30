@@ -47,12 +47,39 @@ cíclica antes de avanzar a la siguiente ronda.
 - Se asume que el número de hilos es al menos 1.
 
 ---
-## Instrucciones de Ejecución (Ubuntu)
+## Instrucciones de Ejecución (Ubuntu/Linux)
 
-### 1. Preparar el mapa de entrada
-Tener archivo de configuración (por ejemplo, `red_servidores.txt`) en la misma carpeta que el código fuente.
+### Requisitos previos
+- Java JDK 11 o superior
+- g++ con soporte C++11
+- `make` instalado (`sudo apt install make`)
 
-### 2. Compilar el código
-Usa el compilador de Java para generar los bytes lógicos:
+### Compilar y ejecutar con Make
+
 ```bash
+# Compilar ambos motores
+make
+
+# Ejecutar Motor Alpha (C++)
+make run-alpha FILE=red_servidores.txt
+
+# Ejecutar Motor Beta (Java)
+make run-java FILE=red_servidores.txt
+
+# Limpiar archivos compilados
+make clean
+```
+
+### Compilación manual (sin Make)
+
+```bash
+# Motor Alpha (C++)
+g++ -Wall -Wextra -std=c++11 -O2 -o LAB2_Torres_Salinas LAB2_Torres_Salinas.cpp
+./LAB2_Torres_Salinas red_servidores.txt
+
+# Motor Beta (Java)
 javac LAB2_Torres_Salinas.java
+java LAB2_Torres_Salinas red_servidores.txt
+```
+
+
