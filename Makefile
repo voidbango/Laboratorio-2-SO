@@ -1,17 +1,30 @@
 # Variables
-CXX = g++
+CXX      = g++
 CXXFLAGS = -Wall -Wextra -std=c++11 -O2
 
-# Nombres de los ejecutables (Ajusta los apellidos según corresponda)
+# Nombres
 TARGET_ALPHA = LAB2_Torres_Salinas
+JAVA_FILE    = LAB2_Torres_Salinas.java
 
-# Regla por defecto
-all: $(TARGET_ALPHA)
+# Compilar ambos motores
+all: $(TARGET_ALPHA) java
 
-# Compilación del Motor Alpha (C++)
+# Motor Alpha (C++)
 $(TARGET_ALPHA): LAB2_Torres_Salinas.cpp
 	$(CXX) $(CXXFLAGS) -o $(TARGET_ALPHA) LAB2_Torres_Salinas.cpp
 
-# Limpiar ejecutables y archivos de texto generados
+# Motor Beta (Java)
+java:
+	javac $(JAVA_FILE)
+
+# Ejecutar Motor Alpha
+run-alpha:
+	./$(TARGET_ALPHA) $(FILE)
+
+# Ejecutar Motor Beta
+run-java:
+	java LAB2_Torres_Salinas $(FILE)
+
+# Limpiar todo
 clean:
-	rm -f $(TARGET_ALPHA) salida-Fork.txt
+	rm -f $(TARGET_ALPHA) *.class salidaFork.txt salidaThread.txt
