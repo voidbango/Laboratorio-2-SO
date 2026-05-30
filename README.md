@@ -1,6 +1,6 @@
 # Laboratorio 2 - SISTEMAS OPERATIVOS
 ## Integrantes
-* **Verónica Torres  ROL: 202372503-5** 
+* **Verónica Torres  ROL: 202373503-5** 
 * **Victor Salinas  ROL: 202204580-9** 
 ---
 
