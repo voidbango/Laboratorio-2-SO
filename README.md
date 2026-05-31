@@ -14,6 +14,22 @@ distintas para encontrar la ruta de menor latencia en una red de servidores diri
 
 ---
 ## MOTOR ALPHA (C++)
+
+### Descripción
+
+Implementación multiproceso del algoritmo de Bellman-Ford en C++. Las conexiones de la red se dividen mediante segmentación 
+estática entre $N$ procesos hijos creados con `fork()`. Debido al aislamiento de memoria impuesto por el sistema operativo, 
+los procesos interactúan con un proceso padre coordinador mediante paso de mensajes a través de tuberías, sincronizando el 
+estado global de las latencias iteración tras iteración.
+
+### Arquitectura Concurrente e IPC
+
+| Mecanismo | Herramienta C/C++ | Propósito |
+|---|---|---|
+| Creación de procesos | `fork()` | Despliegue de unidades de trabajo con aislamiento de memoria (Copy-On-Write). |
+| Intercomunicación | `pipe()` | Canales IPC para enviar el vector de distancias y recibir conteos de optimización. |
+| Sincronización iterativa | Lectura bloqueante (`read`) | Actúa como barrera natural; los hijos pausan su ejecución hasta recibir datos del padre. |
+| Control de recursos | `waitpid()` / `close()` | Recolección de estados de salida (prevención de procesos zombie) y cierre seguro de descriptores de archivo. |
 ---
 
 
